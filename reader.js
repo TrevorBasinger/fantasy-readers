@@ -50,6 +50,13 @@ Reader.ReaderT = function(M) {
             });
         });
     };
+
+    ReaderT.prototype.ap = function (a) {
+      return this.chain (function (f) {
+        return a.map (f);
+      });
+    };
+
     ReaderT.ask = ReaderT(function(e) {
         return M.of(e);
     });
